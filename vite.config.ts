@@ -1,10 +1,12 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const configuredBase = process.env.VITE_BASE_PATH ?? '/'
-const base = configuredBase.endsWith('/') ? configuredBase : `${configuredBase}/`
+export default defineConfig(({ mode }) => {
+  const configuredBase = loadEnv(mode, '.', 'VITE_').VITE_BASE_PATH ?? '/'
+  const base = configuredBase.endsWith('/') ? configuredBase : `${configuredBase}/`
 
-export default defineConfig({
-  base,
-  plugins: [react()],
+  return {
+    base,
+    plugins: [react()],
+  }
 })
