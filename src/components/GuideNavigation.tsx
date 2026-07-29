@@ -1,14 +1,15 @@
-const items = [
-  ['register', '注册账号'],
-  ['install', '安装游戏'],
-  ['login', '登录服务器'],
-  ['troubleshooting', '常见问题'],
-] as const
+import { faq, tutorials } from '../content'
 
 export function GuideNavigation() {
   return (
-    <nav aria-label="指南目录" className="guide-navigation">
-      {items.map(([id, label], index) => <a href={`#${id}`} key={id}><span>0{index + 1}</span>{label}</a>)}
-    </nav>
+    <aside className="toc" aria-label="本页目录">
+      <p>本页目录</p>
+      {tutorials.map((tutorial, index) => (
+        <a href={`#${tutorial.id}`} key={tutorial.id}>
+          <span>{String(index + 1).padStart(2, '0')}</span>{tutorial.navLabel}
+        </a>
+      ))}
+      <a href={`#${faq.id}`}><span>FAQ</span>{faq.navLabel}</a>
+    </aside>
   )
 }

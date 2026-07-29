@@ -3,6 +3,6 @@ export function publicPath(path: string) {
 }
 
 export function resolveContentUrl(url: string) {
-  if (/^(?:https?:|mailto:|#)/i.test(url)) return url
+  if (/^(?:https?:|mailto:|tel:|#)/i.test(url)) return url
   return publicPath(url)
 }
