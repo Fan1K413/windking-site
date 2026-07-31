@@ -1,7 +1,10 @@
 import { useState } from 'react'
 
-export function CopyButton({ value }: { value: string }) {
-  const [label, setLabel] = useState('复制服务器地址')
+type Variant = 'hero' | 'quick' | 'inline'
+
+export function CopyButton({ value, variant = 'hero' }: { value: string; variant?: Variant }) {
+  const [copied, setCopied] = useState(false)
+  const labels = variant === 'quick' ? ['复制', '已复制'] : variant === 'inline' ? ['复制地址', '已复制'] : ['复制服务器地址', '已复制']
 
   async function copy() {
     try {
@@ -13,16 +16,17 @@ export function CopyButton({ value }: { value: string }) {
         field.style.opacity = '0'
         document.body.append(field)
         field.select()
-        const succeeded = document.execCommand('copy')
+        const success = document.execCommand('copy')
         field.remove()
-        if (!succeeded) throw new Error('copy failed')
+        if (!success) throw new Error('copy failed')
       }
-      setLabel('已复制')
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2_000)
     } catch {
-      setLabel('复制失败')
+      setCopied(false)
     }
-    window.setTimeout(() => setLabel('复制服务器地址'), 2_000)
   }
 
-  return <button type="button" onClick={() => void copy()}>{label}</button>
+  const className = variant === 'hero' ? 'button button-secondary' : variant === 'inline' ? 'inline-copy' : undefined
+  return <button className={className} type="button" onClick={() => void copy()}>{copied ? labels[1] : labels[0]}</button>
 }

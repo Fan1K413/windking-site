@@ -5,6 +5,21 @@
 /node_modules/
 /dist/
 
+# Local browser profiles and screenshot comparisons
+/.compare-*/
+/.test-profile*/
+/.tmp-chrome-profile/
+/.verify-*/
+/*-layout.png
+/*-desktop.png
+/*-check.png
+/final-exact.png
+/markdown-build.png
+/markdown-next.png
+/complete-desktop.png
+/complete-mobile.png
+/status-check.png
+
 # Local environment overrides
 .env.local
 .env.*.local
