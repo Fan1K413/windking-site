@@ -18,6 +18,9 @@ function parseDocument(sourcePath: string, raw: string): ContentDocument {
   return { id: data.id, title: data.title, navLabel: data.navLabel, layout: data.layout, order, body: match[2], sourcePath }
 }
 
+const announcementModules = import.meta.glob('../../content/announcement.md', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>
+export const announcement = Object.values(announcementModules)[0]?.trim() ?? ''
+
 const tutorialModules = import.meta.glob('../../content/tutorial-01-*.md', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>
 export const tutorials = Object.entries(tutorialModules).map(([path, raw]) => parseDocument(path, raw)).sort((a, b) => a.order - b.order || a.sourcePath.localeCompare(b.sourcePath))
 const ids = new Set<string>(), orders = new Set<number>()

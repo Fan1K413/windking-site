@@ -36,6 +36,10 @@ title: 页面标题
 
 FAQ 只编辑 [faq.md](content/faq.md)，其 `id` 固定为 `troubleshooting`。
 
+## 置顶公告
+
+编辑 [announcement.md](content/announcement.md) 可以在网站最顶部显示红色公告横幅，支持普通 Markdown 和链接。文件为空或只包含空白时，公告不会显示；清空并提交即可撤下公告。
+
 ## 图片与下载链接
 
 图片和下载文件位于 `public/`。Markdown 中必须写相对于 `public/` 的路径，**不要以 `/` 开头**：

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AnnouncementBanner } from './components/AnnouncementBanner'
 import { CopyButton } from './components/CopyButton'
 import { GuideNavigation } from './components/GuideNavigation'
 import { GuideRenderer } from './components/GuideRenderer'
@@ -32,6 +33,7 @@ export default function App() {
           <a href={`mailto:${siteConfig.supportEmail}`}>技术支持</a>
         </nav>
       </header>
+      <AnnouncementBanner />
 
       <section className="tutorial-hero">
         <div className="hero-copy">
